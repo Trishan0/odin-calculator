@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Calculator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="calculator">
-        <div class="display" id="display">0</div>
-        <div class="buttons">
-            <button class="btn special" id="ac-btn">AC</button>
-            <button class="btn special" id="del-btn">DEL</button>
-            <button class="btn special">%</button>
-            <button class="btn operator">/</button>
-            
-            <button class="btn number" value="7">7</button>
-            <button class="btn number">8</button>
-            <button class="btn number">9</button>
-            <button class="btn operator">*</button>
-            
-            <button class="btn number">4</button>
-            <button class="btn number">5</button>
-            <button class="btn number">6</button>
-            <button class="btn operator">-</button>
-            
-            <button class="btn number">1</button>
-            <button class="btn number">2</button>
-            <button class="btn number">3</button>
-            <button class="btn operator">+</button>
-            
-            <button class="btn zero number">0</button>
-            <button class="btn number">.</button>
-            <button class="btn result" id="show-result">=</button>
-        </div>
+      <div class="display" id="display">0</div>
+      <div class="buttons">
+        <button class="btn special" id="ac-btn">AC</button>
+        <button class="btn special" id="del-btn">DEL</button>
+        <button class="btn special">%</button>
+        <button class="btn operator">/</button>
+
+        <button class="btn number">7</button>
+        <button class="btn number">8</button>
+        <button class="btn number">9</button>
+        <button class="btn operator">*</button>
+
+        <button class="btn number">4</button>
+        <button class="btn number">5</button>
+        <button class="btn number">6</button>
+        <button class="btn operator">-</button>
+
+        <button class="btn number">1</button>
+        <button class="btn number">2</button>
+        <button class="btn number">3</button>
+        <button class="btn operator">+</button>
+
+        <button class="btn zero number">0</button>
+        <button class="btn number">.</button>
+        <button class="btn result" id="show-result">=</button>
+      </div>
     </div>
+    <footer>
+      <p>
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Trishan0
+      </p>
+      <a href="https://github.com/Trishan0" target="_blank">
+        <img class="github-logo" src="github-mark.svg" />
+      </a>
+    </footer>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
