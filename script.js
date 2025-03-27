@@ -97,21 +97,23 @@ function deleteLast(){
         display.innerText = 'Invalid Input';
         return;
     }
-        if (operator==="+"){
-            result = add(value1, value2);  
-        }
-        else if (operator==="-"){
-            result = sub(value1, value2); 
-        }
-        else if (operator==="*"){
+
+    switch (operator){
+        case "+":
+            result = add(value1, value2);
+            break;
+        case "-":
+            result = sub(value1, value2);
+            break;
+        case "*":
             result = multiply(value1, value2);
-        }
-        else if (operator==="/"){
+            break;
+        case "/":
             result = divide(value1, value2);
-        }
-        else {
-            return null;
-        }
+            break;
+        default:
+            return null
+    }
 
         display.innerText = result;
         value1 = 0
