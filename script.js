@@ -86,6 +86,14 @@ function deleteLast(){
 
 
     resultBtn.addEventListener('click', () => {
+        if (value2===0 && operator=== '/'){
+            display.innerText = "Error";
+            return;
+    }
+    if (value1 === null || value2 === null || operator === null) {
+        display.innerText = 'Invalid Input';
+        return;
+    }
         if (operator==="+"){
             result = add(value1, value2);  
         }
