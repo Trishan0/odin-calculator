@@ -55,7 +55,8 @@ function deleteLast(){
         button.addEventListener('click', () => {
             if (operator === null) {
                 currentInput += button.textContent; // Append number to current input
-                value1 = parseFloat(currentInput); // Store the first value
+                value1 = parseFloat(currentInput);
+             // Store the first value
             } else {
                 if (value2 === null){
                     currentInput = '';
