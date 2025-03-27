@@ -25,39 +25,36 @@ document.addEventListener('DOMContentLoaded', function () {
         return value1 / value2  
     }
 
-    function setNumber(num){
+    function handleNumberInput(num) {
         if (num === '.' && currentInput.includes('.')){
             return;
         }
         if (operator === null) {
-            currentInput += num; 
+            currentInput += num;
             value1 = parseFloat(currentInput);
         } else {
             if (value2 === null){
                 currentInput = '';
             }
             currentInput += num;
-            value2 = parseFloat(currentInput)
+            value2 = parseFloat(currentInput);
         }
-        display.innerText = currentInput; 
+        display.innerText = currentInput;
     }
 
-
-    function setOperator(op){
-        if (display) {
-            if (value1 === null) {
-                value1 = parseFloat(currentInput); 
-            } else {
-                value2 = parseFloat(currentInput); 
-            }
-            operator = op; 
-            currentInput = '';
-            display.innerText = operator; 
+    function handleOperatorInput(op) {
+        if (value1 === null) {
+            value1 = parseFloat(currentInput); 
+        } else {
+            value2 = parseFloat(currentInput); 
         }
+        operator = op;
+        currentInput = '';
+        display.innerText = operator;
     }
 
-    function calculateResult(){
-        if (value2===0 && operator=== '/'){
+    function calculateResult() {
+        if (value2 === 0 && operator === '/'){
             display.innerText = "Error";
             return;
         }
@@ -65,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
             display.innerText = 'Invalid Input';
             return;
         }
-
-        switch (operator){
+        
+        switch(operator) {
             case "+":
                 result = add(value1, value2);
                 break;
@@ -80,49 +77,73 @@ document.addEventListener('DOMContentLoaded', function () {
                 result = divide(value1, value2);
                 break;
             default:
-                return null
+                return null;
         }
 
         display.innerText = result;
-        value1 = 0
-        value2 = 0
-        operator = null
-        currentInput = ''
+        value1 = 0;
+        value2 = 0;
+        operator = null;
+        currentInput = '';
     }
-
-    acBtn.addEventListener('click',()=>{
+    function clearInput(){
         value1 = null;  
         value2 = null;  
         operator = null;
-        currentInput = '';  // Reset current input
-        display.innerText = "0"; // Reset display to "0"
+        currentInput = '';
+        display.innerText = "0";
+    }
 
-   })
+    function deleteLast() {
+        if (currentInput.length > 0) {
+            currentInput = currentInput.slice(0, -1);
+            display.innerText = currentInput.length > 0 ? currentInput : "0";
+        }
+        if (operator === null) {
+            value1 = currentInput.length > 0 ? parseFloat(currentInput) : null;
+        } else {
+            value2 = currentInput.length > 0 ? parseFloat(currentInput) : null;
+        }
+    }
 
-   function deleteLast(){
-       if (currentInput.length > 0) {
-           currentInput = currentInput.slice(0,-1)
-           display.innerText = currentInput.length > 0 ? currentInput : "0";
-       }
-       if (operator===null){
-           value1 = currentInput.length > 0 ? parseFloat(currentInput) : null;
-       }
-       else {
-           value2 = currentInput.length > 0 ? parseFloat(currentInput) : null;
+    delBtn.addEventListener('click', deleteLast);
 
-       }
-   }
+    acBtn.addEventListener('click', clearInput);
 
     buttons.forEach((button) => {
-        button.addEventListener('click',setNumber(button.textContent));
-    });
-    
-    operators.forEach((btnOperator) => {
-        btnOperator.addEventListener('click', setOperator(btnOperator.textContent));
+        button.addEventListener('click', () => handleNumberInput(button.textContent));
     });
 
-    resultBtn.addEventListener('click',calculateResult);
-    
-    delBtn.addEventListener('click',deleteLast )
+    operators.forEach((btnOperator) => {
+        btnOperator.addEventListener('click', () => handleOperatorInput(btnOperator.textContent));
+    });
+
+    resultBtn.addEventListener('click', calculateResult);
+
+    document.addEventListener('keydown', (event)=>{
+        const key = event.key
+        if ((key >= '0' && key <= '9') || (key ==='.')){
+            handleNumberInput(key)
+        }
+        if (['+', '-', '*', '/'].includes(key)) {
+            handleOperatorInput(key);
+        }
+
+        // Enter or = for result
+        if (key === 'Enter' || key === '=') {
+            event.preventDefault(); // Prevent default Enter key behavior
+            calculateResult();
+        }
+
+        // Backspace for deletion
+        if (key === 'Backspace') {
+            deleteLast();
+        }
+
+        // Escape or Delete for all clear
+        if (key === 'Escape' || key === 'Delete') {
+            clearInput();
+        }
+    })
 
 })
