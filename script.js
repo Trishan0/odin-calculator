@@ -67,11 +67,7 @@ function deleteLast(){
 
         });
     });
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Backspace") {
-            deleteLast();
-        }
-    });
+
     operators.forEach((btnOperator) => {
         btnOperator.addEventListener('click', () => {
             if (display) {
@@ -111,27 +107,5 @@ function deleteLast(){
         operator = null
         currentInput = ''
     });
-
-    document.addEventListener('keydown', function(event){
-        if (event.key ==="Enter"){
-            event.preventDefault();
-            resultBtn.click();
-        }
-        else if (event.key==="+"){
-            result = add(value1, value2);  
-        }
-        else if (event.key==="-"){
-            result = sub(value1, value2); 
-        }
-        else if (event.key==="*"){
-            result = multiply(value1, value2);
-        }
-        else if (event.key==="/"){
-            result = divide(value1, value2);
-        }
-        else {
-            return null;
-        }
-    })
 
 })
