@@ -53,6 +53,9 @@ function deleteLast(){
 
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
+            if (button.textContent === '.' && currentInput.includes('.')){
+                return;
+            }
             if (operator === null) {
                 currentInput += button.textContent; // Append number to current input
                 value1 = parseFloat(currentInput);
